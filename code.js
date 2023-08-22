@@ -36,19 +36,13 @@ const connect = () => {
     if (!row1Clicked || !row2Clicked) {
         alert ('לא נבחרו שני דברים לחיבור!')
     } else {
-        if (currPath) {
-            currPath.style.zIndex = 3;
-        }
         // divide by 4 because we have 4 elements
-        // without -(viewBoxWidth / 4 / 2), will get to the top right corner (starting to count from 1, if starts from 0, change -50 to +50)
+        // -(viewBoxWidth / 8), to make the line start at the center of the object (if starting to count for 0, change - to +)
         let x1 = Number(row1Clicked.id.slice(1)) * (svg.clientWidth / 4) - (svg.clientWidth / 8); 
         let x2 = Number(row2Clicked.id.slice(1)) * (svg.clientWidth / 4) - (svg.clientWidth / 8);
         let y1 = 0;
         let y2 = svg.clientHeight;
         currPath = document.getElementById(`path${row1Clicked.id.slice(1)}`);
-        console.log(currPath);
         currPath.setAttribute('d', `M ${x1} 0 C ${x1} ${y2 * 1.2} ${x2} ${y2 * 0.01} ${x2} ${y2}`);
-        currPath.style.zIndex = 4;
-        // document.querySelector('.line').setAttribute('d', `M ${x1} ${y1} L ${x2} ${y2}`)
     }
 }
